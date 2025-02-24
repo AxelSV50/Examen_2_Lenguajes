@@ -12,4 +12,8 @@ public interface MajorRepository extends JpaRepository<Major, Integer> {
     @Transactional
     @Query(value = "EXEC DeleteMajorById @Id = ?1", nativeQuery = true)
     void deleteMajorById(Integer id);
+
+    boolean existsByCode(String code);
+
+    boolean existsByCodeAndIdNot(String code, Integer id);
 }
