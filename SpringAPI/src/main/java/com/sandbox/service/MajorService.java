@@ -36,6 +36,10 @@ public class MajorService {
     }
 
     public void deleteMajorById(Integer id) throws SQLException{
-        repository.deleteById(id);
+
+        if (!repository.existsById(id)) {
+            throw new EntityNotFoundException("Major with ID " + id + " not found");
+        }
+        repository.deleteMajorById(id);
     }
 }

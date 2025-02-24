@@ -47,8 +47,8 @@ public class MajorController {
         service.updateMajor(student);
     }
 
-    @DeleteMapping("/deleteMajor/{id}")
-    public void deleteMajor(@PathVariable Integer id) throws SQLException {
+    @DeleteMapping("/deleteMajorById/{id}")
+    public void deleteMajorById(@PathVariable Integer id) throws SQLException {
 
         service.deleteMajorById(id);
     }
