@@ -9,7 +9,8 @@ var httpLink = {
   getAllMajors: apiUrl + "/api/major/getAllMajors",
   deleteMajorById: apiUrl + "/api/major/deleteMajorById/",
   getMajorDetailById: apiUrl + "/api/major/getMajorById",
-  saveMajor: apiUrl + "/api/major/saveMajor"
+  saveMajor: apiUrl + "/api/major/saveMajor",
+  updateMajor: apiUrl + "/api/major/updateMajor"
 }
 
 @Injectable({
@@ -33,6 +34,10 @@ export class HttpProviderService {
 
   public saveMajor(model: any): Observable<any> {
     return this.webApiService.post(httpLink.saveMajor, model);
+  }
+
+  public editMajor(model: any): Observable<any> {
+    return this.webApiService.post(httpLink.updateMajor, model);
   }
   
 }

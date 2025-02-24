@@ -43,7 +43,7 @@ export class EditEmployeeComponent implements OnInit {
   EditMajor(isValid: any) {
     this.isSubmitted = true;
     if (isValid) {
-      this.httpProvider.saveMajor(this.editMajorForm).subscribe(async data => {
+      this.httpProvider.editMajor(this.editMajorForm).subscribe(async data => {
           this.toastr.success("Carrera actualizada correctamente");
           setTimeout(() => {
             this.router.navigate(['/Home']);
