@@ -10,22 +10,22 @@ import { WebApiService } from '../service/web-api.service';
 })
 export class ViewEmployeeComponent implements OnInit {
 
-  employeeId: any;
-  employeeDetail : any= [];
+  majorId: any;
+  majorDetail : any= [];
    
   constructor(public webApiService: WebApiService, private route: ActivatedRoute, private httpProvider : HttpProviderService) { }
   
   ngOnInit(): void {
-    this.employeeId = this.route.snapshot.params['employeeId'];      
-    this.getEmployeeDetailById();
+    this.majorId = this.route.snapshot.params['majorId'];      
+    this.getMajorDetailById();
   }
 
-  getEmployeeDetailById() {       
-    this.httpProvider.getEmployeeDetailById(this.employeeId).subscribe((data : any) => {      
+  getMajorDetailById() {       
+    this.httpProvider.getMajorDetailById(this.majorId).subscribe((data : any) => {      
       if (data != null && data.body != null) {
         var resultData = data.body;
         if (resultData) {
-          this.employeeDetail = resultData;
+          this.majorDetail = resultData;
         }
       }
     },

@@ -37,20 +37,20 @@ const MODALS: { [name: string]: Type<any> } = {
 })
 export class HomeComponent implements OnInit {
   closeResult = '';
-  employeeList: any = [];
+  majorList: any = [];
   constructor(private router: Router, private modalService: NgbModal,
     private toastr: ToastrService, private httpProvider : HttpProviderService) { }
 
   ngOnInit(): void {
-    this.getAllEmployee();
+    this.getAllMajors();
   }
 
-  async getAllEmployee() {
-    this.httpProvider.getAllEmployee().subscribe((data : any) => {
+  async getAllMajors() {
+    this.httpProvider.getAllMajors().subscribe((data : any) => {
       if (data != null && data.body != null) {
         var resultData = data.body;
         if (resultData) {
-          this.employeeList = resultData;
+          this.majorList = resultData;
         }
       }
     },
@@ -58,40 +58,35 @@ export class HomeComponent implements OnInit {
         if (error) {
           if (error.status == 404) {
             if(error.error && error.error.message){
-              this.employeeList = [];
+              this.majorList = [];
             }
           }
         }
       });
   }
 
-  AddEmployee() {
-    this.router.navigate(['AddEmployee']);
+  AddMajor() {
+    this.router.navigate(['AddMajor']);
   }
 
-  deleteEmployeeConfirmation(employee: any) {
+  deleteMajorConfirmation(major: any) {
     this.modalService.open(MODALS['deleteModal'],
       {
         ariaLabelledBy: 'modal-basic-title'
       }).result.then((result) => {
-        this.deleteEmployee(employee);
+        this.deleteMajor(major);
       },
         (reason) => {});
   }
 
-  deleteEmployee(employee: any) {
-    this.httpProvider.deleteEmployeeById(employee.id).subscribe((data : any) => {
-      console.log(data);
-      if (data != null && data.body != null) {
-        var resultData = data.body;
-        console.log(resultData);
-        if (resultData != null && resultData.isSuccess) {
-          this.toastr.success(resultData.message);
-          this.getAllEmployee();
-        }
-      }
+  deleteMajor(major: any) {
+    this.httpProvider.deleteMajorById(major.id).subscribe((data : any) => {
+      this.toastr.success("Carrera eliminada correctamente");
+      this.getAllMajors();
     },
-    (error : any) => {});
+    (error : any) => {
+      this.toastr.error("No se puede eliminar una carrera que tiene estudiantes asociados");
+    });
   }
   /*deleteEmployee(employee: any) {
     this.httpProvider.deleteEmployeeById(employee.id).subscribe((data: any) => {

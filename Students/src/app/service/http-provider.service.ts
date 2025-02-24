@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { WebApiService } from './web-api.service';
+import { HttpClient } from '@angular/common/http';
 
 var apiUrl = "http://localhost:8080";
 
-//var apiUrl = "http://192.168.10.10:105";
-
 var httpLink = {
-  getAllEmployee: apiUrl + "/api/employee/getAllEmployee",
-  deleteEmployeeById: apiUrl + "/api/employee/deleteEmployeeById",
-  getEmployeeDetailById: apiUrl + "/api/employee/getEmployeeDetailById",
-  saveEmployee: apiUrl + "/api/employee/saveEmployee"
+  getAllMajors: apiUrl + "/api/major/getAllMajors",
+  deleteMajorById: apiUrl + "/api/major/deleteMajorById/",
+  getMajorDetailById: apiUrl + "/api/major/getMajorById",
+  saveMajor: apiUrl + "/api/major/saveMajor"
 }
 
 @Injectable({
@@ -18,22 +17,22 @@ var httpLink = {
 })
 export class HttpProviderService {
 
-  constructor(private webApiService: WebApiService) { }
+  constructor(private webApiService: WebApiService, private httpClient: HttpClient) { }
 
-  public getAllEmployee(): Observable<any> {
-    return this.webApiService.get(httpLink.getAllEmployee);
+  public getAllMajors(): Observable<any> {
+    return this.webApiService.get(httpLink.getAllMajors);
   }
 
-  public deleteEmployeeById(model: any): Observable<any> {
-    return this.webApiService.post(httpLink.deleteEmployeeById + '/' + model, "");
+  public deleteMajorById(model: any): Observable<any> {
+    return this.httpClient.delete(httpLink.deleteMajorById + model);
   }
 
-  public getEmployeeDetailById(model: any): Observable<any> {
-    return this.webApiService.get(httpLink.getEmployeeDetailById + '/' + model);
+  public getMajorDetailById(model: any): Observable<any> {
+    return this.webApiService.get(httpLink.getMajorDetailById + '/' + model);
   }
 
-  public saveEmployee(model: any): Observable<any> {
-    return this.webApiService.post(httpLink.saveEmployee, model);
+  public saveMajor(model: any): Observable<any> {
+    return this.webApiService.post(httpLink.saveMajor, model);
   }
   
 }

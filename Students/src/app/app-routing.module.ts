@@ -8,9 +8,9 @@ import { ViewEmployeeComponent } from './view-employee/view-employee.component';
 const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full'},
   { path: 'Home', component: HomeComponent },
-  { path: 'ViewEmployee/:employeeId', component: ViewEmployeeComponent },
-  { path: 'AddEmployee', component: AddEmployeeComponent },
-  { path: 'EditEmployee/:employeeId', component: EditEmployeeComponent } 
+  { path: 'ViewMajor/:majorId', component: ViewEmployeeComponent },
+  { path: 'AddMajor', component: AddEmployeeComponent },
+  { path: 'EditMajor/:majorId', component: EditEmployeeComponent } 
 ];
   
 

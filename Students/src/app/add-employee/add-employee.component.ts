@@ -10,10 +10,10 @@ import { HttpProviderService } from '../service/http-provider.service';
   styleUrls: ['./add-employee.component.scss']
 })
 export class AddEmployeeComponent implements OnInit {
-  addEmployeeForm: employeeForm = new employeeForm();
+  addMajorForm: majorForm = new majorForm();
 
-  @ViewChild("employeeForm")
-  employeeForm!: NgForm;
+  @ViewChild("majorForm")
+  majorForm!: NgForm;
 
   isSubmitted: boolean = false;
 
@@ -22,24 +22,17 @@ export class AddEmployeeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  AddEmployee(isValid: any) {
+  AddMajor(isValid: any) {
     this.isSubmitted = true;
     if (isValid) {
-      this.httpProvider.saveEmployee(this.addEmployeeForm).subscribe(async data => {
-        if (data != null && data.body != null) {
-          if (data != null && data.body != null) {
-            var resultData = data.body;
-            if (resultData != null && resultData.isSuccess) {
-              this.toastr.success(resultData.message);
-              setTimeout(() => {
-                this.router.navigate(['/Home']);
-              }, 500);
-            }
-          }
-        }
+      this.httpProvider.saveMajor(this.addMajorForm).subscribe(async data => {
+        this.toastr.success("Carrera ingresada correctamente");
+          setTimeout(() => {
+            this.router.navigate(['/Home']);
+          }, 500);
       },
         async error => {
-          this.toastr.error(error.message);
+          this.toastr.error("Hubo un error al ingresar la carrera");
           setTimeout(() => {
             this.router.navigate(['/Home']);
           }, 500);
@@ -49,10 +42,7 @@ export class AddEmployeeComponent implements OnInit {
 
 }
 
-export class employeeForm {
-  firstName: string = "";
-  lastName: string = "";
-  email: string = "";
-  address: string = "";
-  phone: string = "";
+export class majorForm {
+  name: string = "";
+  code: string = "";
 }

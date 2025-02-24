@@ -4,96 +4,48 @@
       <div class="table-title">
         <div class="row">
           <div class="col-sm-6">
-            <h4><b>Update Employee</b></h4>
+            <h4><b>Update Major</b></h4>
           </div>
           <div class="col-sm-6">
-            <a href="#" routerLink="/Home" class="btn btn-success back"><i class='fas fa-arrow-circle-left'></i>
-              &nbsp;Back</a>
+            <a href="#" routerLink="/Home" class="btn btn-success back">
+              <i class='fas fa-arrow-circle-left'></i>&nbsp;Back
+            </a>
           </div>
         </div>
       </div>
-      <form #employeeForm="ngForm">
+      <form #majorForm="ngForm">
         <div class="table-content">
           <div class="form-group p-10 row">
             <div class="col-sm-3">
-              <label for="FirstName" class="p-t-b-10">First Name<span class="requiredStar">*</span></label>
+              <label for="Name" class="p-t-b-10">Major Name<span class="requiredStar">*</span></label>
             </div>
             <div class="col-sm-9">
-              <input type="text" class="form-control" id="FirstName" required maxlength="255"
-                [(ngModel)]="editEmployeeForm.firstName" name="FirstName" #FirstName="ngModel">
-              <div *ngIf="FirstName.errors && isSubmitted" class="alert alert-danger validationError">
-                <div [hidden]="!FirstName.errors?.['required']">
-                  First Name is required
+              <input type="text" class="form-control" id="Name" required maxlength="255"
+                [(ngModel)]="editMajorForm.name" name="Name" #Name="ngModel">
+              <div *ngIf="Name.errors && isSubmitted" class="alert alert-danger validationError">
+                <div [hidden]="!Name.errors?.['required']">
+                  Major Name is required
                 </div>
               </div>
             </div>
           </div>
           <div class="form-group p-10 row">
             <div class="col-sm-3">
-              <label for="LastName" class="p-t-b-10">Last Name<span class="requiredStar">*</span></label>
+              <label for="Code" class="p-t-b-10">Major Code<span class="requiredStar">*</span></label>
             </div>
             <div class="col-sm-9">
-              <input type="text" class="form-control" id="LastName" required maxlength="255"
-                [(ngModel)]="editEmployeeForm.lastName" name="LastName" #LastName="ngModel">
-              <div *ngIf="LastName.errors && isSubmitted" class="alert alert-danger validationError">
-                <div [hidden]="!LastName.errors?.['required']">
-                  Last Name is required
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group p-10 row">
-            <div class="col-sm-3">
-              <label class="p-t-b-10">Email<span class="requiredStar">*</span></label>
-            </div>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" id="Email" required maxlength="255"
-                [(ngModel)]="editEmployeeForm.email" name="Email" #Email="ngModel"
-                >
-              <div *ngIf="Email.errors && isSubmitted" class="alert alert-danger validationError">
-                <div [hidden]="!Email.errors?.['required']">
-                  Email is required
-                </div>
-                <div [hidden]="!Email.errors?.['touched'] && !Email.errors?.['pattern']">
-                  Email is invalid
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group p-10 row">
-            <div class="col-sm-3">
-              <label class="p-t-b-10">Address<span class="requiredStar">*</span></label>
-            </div>
-            <div class="col-sm-9">
-              <textarea class="form-control" id="Address" required [(ngModel)]="editEmployeeForm.address" name="Address"
-                #Address="ngModel">></textarea>
-              <div *ngIf="Address.errors && isSubmitted" class="alert alert-danger validationError">
-                <div [hidden]="!Address.errors?.['required']">
-                  Address is required
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group p-10 row">
-            <div class="col-sm-3">
-              <label class="p-t-b-10">Phone<span class="requiredStar">*</span></label>
-            </div>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" id="Phone" required maxlength="10"
-                [(ngModel)]="editEmployeeForm.phone" name="Phone" #Phone="ngModel" pattern="^\d{3}\d{3}\d{4}$">
-              <div *ngIf="Phone.errors && isSubmitted" class="alert alert-danger validationError">
-                <div [hidden]="!Phone.errors?.['required']">
-                  Phone is required
-                </div>
-                <div [hidden]="!Phone.errors?.['touched'] && !Phone.errors?.['pattern']">
-                  Phone is invalid
+              <input type="text" class="form-control" id="Code" required maxlength="50"
+                [(ngModel)]="editMajorForm.code" name="Code" #Code="ngModel">
+              <div *ngIf="Code.errors && isSubmitted" class="alert alert-danger validationError">
+                <div [hidden]="!Code.errors?.['required']">
+                  Major Code is required
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div class="table-footer">
-          <button class="btn btn-success" (click)="EditEmployee(employeeForm.form.valid)">Submit</button>
+          <button class="btn btn-success" (click)="EditMajor(majorForm.form.valid)">Submit</button>
         </div>
       </form>
     </div>

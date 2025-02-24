@@ -10,57 +10,47 @@ import { HttpProviderService } from '../service/http-provider.service';
   styleUrls: ['./edit-employee.component.scss']
 })
 export class EditEmployeeComponent implements OnInit {
-  editEmployeeForm: employeeForm = new employeeForm();
+  editMajorForm: majorForm = new majorForm();
 
-  @ViewChild("employeeForm")
-  employeeForm!: NgForm;
+  @ViewChild("majorForm")
+  majorForm!: NgForm;
 
   isSubmitted: boolean = false;
-  employeeId: any;
+  majorId: any;
 
   constructor(private toastr: ToastrService, private route: ActivatedRoute, private router: Router,
     private httpProvider: HttpProviderService) { }
 
   ngOnInit(): void {
-    this.employeeId = this.route.snapshot.params['employeeId'];
-    this.getEmployeeDetailById();
+    this.majorId = this.route.snapshot.params['majorId'];
+    this.getMajorDetailById();
   }
 
-  getEmployeeDetailById() {
-    this.httpProvider.getEmployeeDetailById(this.employeeId).subscribe((data: any) => {
+  getMajorDetailById() {
+    this.httpProvider.getMajorDetailById(this.majorId).subscribe((data: any) => {
       if (data != null && data.body != null) {
         var resultData = data.body;
         if (resultData) {
-          this.editEmployeeForm.id = resultData.id;
-          this.editEmployeeForm.firstName = resultData.firstName;
-          this.editEmployeeForm.lastName = resultData.lastName;
-          this.editEmployeeForm.email = resultData.email;
-          this.editEmployeeForm.address = resultData.address;
-          this.editEmployeeForm.phone = resultData.phone;
+          this.editMajorForm.id = resultData.id;
+          this.editMajorForm.name = resultData.name;
+          this.editMajorForm.code = resultData.code;
         }
       }
     },
       (error: any) => { });
   }
 
-  EditEmployee(isValid: any) {
+  EditMajor(isValid: any) {
     this.isSubmitted = true;
     if (isValid) {
-      this.httpProvider.saveEmployee(this.editEmployeeForm).subscribe(async data => {
-        if (data != null && data.body != null) {
-          var resultData = data.body;
-          if (resultData != null && resultData.isSuccess) {
-            if (resultData != null && resultData.isSuccess) {
-              this.toastr.success(resultData.message);
-              setTimeout(() => {
-                this.router.navigate(['/Home']);
-              }, 500);
-            }
-          }
-        }
+      this.httpProvider.saveMajor(this.editMajorForm).subscribe(async data => {
+          this.toastr.success("Carrera actualizada correctamente");
+          setTimeout(() => {
+            this.router.navigate(['/Home']);
+          }, 500);
       },
         async error => {
-          this.toastr.error(error.message);
+          this.toastr.error("Hubo un erorr al actualizar la carrera");
           setTimeout(() => {
             this.router.navigate(['/Home']);
           }, 500);
@@ -69,11 +59,8 @@ export class EditEmployeeComponent implements OnInit {
   }
 }
 
-export class employeeForm {
+export class majorForm {
   id: number = 0;
-  firstName: string = "";
-  lastName: string = "";
-  email: string = "";
-  address: string = "";
-  phone: string = "";
+  name: string = "";
+  code: string = "";
 }

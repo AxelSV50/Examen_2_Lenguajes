@@ -4,7 +4,7 @@
       <div class="table-title">
         <div class="row">
           <div class="col-sm-6">
-            <h4><b>View Employee</b></h4>
+            <h4><b>View Major</b></h4>
           </div>
           <div class="col-sm-6">
             <a href="#" routerLink="/Home" class="btn btn-success back"><i class='fas fa-arrow-circle-left'></i> &nbsp;Back</a>
@@ -14,48 +14,21 @@
       <table class="table table-striped table-hover table-bordered table-content">
         <tbody>
           <tr>
-            <td>
-              <label><b>First Name</b></label>
-            </td>
-            <td>
-              <span>{{ employeeDetail.firstName }}</span>              
-            </td>
+            <td><label><b>ID</b></label></td>
+            <td><span>{{ majorDetail.id }}</span></td>
           </tr>
           <tr>
-            <td>
-              <label><b>Last Name</b></label>
-            </td>
-            <td>
-              <span>{{ employeeDetail.lastName }}</span>              
-            </td>
+            <td><label><b>Name</b></label></td>
+            <td><span>{{ majorDetail.name }}</span></td>
           </tr>
           <tr>
-            <td>
-              <label><b>Email</b></label>
-            </td>
-            <td>
-              <span>{{ employeeDetail.email }}</span>              
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label><b>Address</b></label>
-            </td>
-            <td>
-              <span>{{ employeeDetail.address }}</span>              
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label><b>Phone</b></label>
-            </td>
-            <td>
-              <span>{{ employeeDetail.phone }}</span>              
-            </td>
+            <td><label><b>Code</b></label></td>
+            <td><span>{{ majorDetail.code }}</span></td>
           </tr>
         </tbody>
       </table>       
     </div>
   </div>
 </div>
+
 
